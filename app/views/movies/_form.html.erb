@@ -1,0 +1,45 @@
+<%= form_with model: @movie, local: true do |form| %>
+  <% if @movie.errors.any? %>
+    <div class="alert alert-danger">
+      <h4>Errors:</h4>
+      <ul>
+        <% @movie.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :author %>
+    <%= form.text_field :author, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :release_year, "Release Year" %>
+    <%= form.number_field :release_year, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= form.label :category %>
+    <%= form.text_field :category, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :rating %>
+    <%= form.number_field :rating, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :watched %>
+    <%= form.check_box :watched %> Watched
+  </div>
+
+  <%= form.submit class: "btn btn-primary mt-3" %>
+<% end %>
