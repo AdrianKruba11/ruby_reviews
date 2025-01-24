@@ -45,6 +45,17 @@ class MoviesController < ApplicationController
     redirect_to movies_url, notice: "Movie was successfully deleted."
   end
 
+  def create_review
+    @movie = Movie.find(params[:movie_id])  # Wyszukaj film na podstawie ID
+    @review = @movie.reviews.build(review_params)  # Stwórz nową recenzję powiązaną z filmem
+    if @review.save
+      redirect_to @movie, notice: "Review was successfully added."  # Przekierowanie po zapisaniu
+    else
+      render :show, status: :unprocessable_entity  # Jeśli coś poszło nie tak, wróć do strony filmu
+    end
+  end
+
+
   private
 
   # Ustawianie zmiennej @movie na podstawie ID
@@ -55,6 +66,14 @@ class MoviesController < ApplicationController
   # Parametry dozwolone w formularzu
   def movie_params
     params.require(:movie).permit(:title, :author, :release_year, :category, :rating, :watched)
+  end
+
+  def review_params
+    params.require(:review).permit(:content, :rating)  # Parametry recenzji
+  end
+
+  def set_movie
+    @movie = Movie.find(params[:id])  # Znajdź film na podstawie jego ID
   end
 
 
