@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Trasa główna
   root "movies#index"
 
+
   # Trasa dla filmów
   resources :movies do
     # Trasa dla recenzji filmów (tylko akcja create)

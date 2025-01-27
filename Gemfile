@@ -55,3 +55,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem 'tzinfo-data', platforms: [:mingw, :x64_mingw, :mswin]
